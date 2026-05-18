@@ -98,7 +98,6 @@ export default function RegisterCardScreen() {
         id: Date.now().toString(),
         name: name.trim(),
         expansion: expansion.trim() || undefined,
-        // rarity stored as string identifier
         rarity: rarity ?? undefined,
         quantity: Number(quantity) || 1,
         imageUri,
@@ -110,7 +109,6 @@ export default function RegisterCardScreen() {
 
       await insertCard(card);
 
-      // limpiar formulario inmediatamente después de guardar
       setName('');
       setExpansion('');
       setQuantity('1');
@@ -129,7 +127,6 @@ export default function RegisterCardScreen() {
         {
           text: 'Agregar otra',
           onPress: () => {
-            /* ya está limpio */
           },
         },
       ]);
@@ -152,8 +149,6 @@ export default function RegisterCardScreen() {
         <ThemedText type="title">Registrar carta</ThemedText>
         <ThemedText type="small">Ingresa los datos de tu carta coleccionable</ThemedText>
       </ThemedView>
-
-      {/* Nombre */}
       <ThemedView type="backgroundElement" style={styles.field}>
         <ThemedText type="subtitle">Nombre de la carta *</ThemedText>
         <TextInput
@@ -168,7 +163,7 @@ export default function RegisterCardScreen() {
         />
       </ThemedView>
 
-      {/* Seleccionar imagen */}
+
       <ThemedView type="backgroundElement" style={styles.field}>
         <ThemedText type="subtitle">Imagen de la carta *</ThemedText>
         <Pressable style={styles.imagePicker} onPress={pickImage} disabled={saving}>
@@ -177,7 +172,7 @@ export default function RegisterCardScreen() {
         {imageUri && <Image source={{ uri: imageUri }} style={styles.preview} />}
       </ThemedView>
 
-      {/* Precio de compra y Precio de venta */}
+
       <View style={styles.fieldRow}>
         <ThemedView type="backgroundElement" style={[styles.field, styles.fieldHalf]}>
           <ThemedText type="subtitle">Precio de compra *</ThemedText>
@@ -210,7 +205,7 @@ export default function RegisterCardScreen() {
         </ThemedView>
       </View>
 
-      {/* Moneda de compra y Moneda de venta */}
+
       <View style={styles.fieldRow}>
         <ThemedView type="backgroundElement" style={[styles.field, styles.fieldHalf]}>
           <ThemedText type="subtitle">Moneda de compra</ThemedText>
@@ -235,7 +230,7 @@ export default function RegisterCardScreen() {
         </ThemedView>
       </View>
 
-      {/* Rareza y Expansión */}
+  
       <View style={styles.fieldRow}>
         <ThemedView type="backgroundElement" style={[styles.field, styles.fieldHalf]}>
           <ThemedText type="subtitle">Rareza</ThemedText>
@@ -263,7 +258,7 @@ export default function RegisterCardScreen() {
         </ThemedView>
       </View>
 
-      {/* Botones de acción */}
+
       <View style={styles.buttonRow}>
         <Pressable
           style={[styles.backButton, saving && styles.backButtonDisabled]}
@@ -286,7 +281,7 @@ export default function RegisterCardScreen() {
         </Pressable>
       </View>
 
-      {/* Info */}
+
       <View style={styles.info}>
         <ThemedText type="small">* Campos obligatorios</ThemedText>
       </View>

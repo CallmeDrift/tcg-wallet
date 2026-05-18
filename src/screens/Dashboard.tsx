@@ -30,7 +30,7 @@ export default function Dashboard() {
     }
   };
 
-  // Calculate totals from cards
+
   const totalInvested = cards.reduce((sum, card) => sum + ((card.boughtPrice ?? 0) * (card.quantity ?? 1)), 0);
   const estimatedValue = cards.reduce((sum, card) => sum + ((card.soldPrice ?? 0) * (card.quantity ?? 1)), 0);
 
@@ -42,7 +42,6 @@ export default function Dashboard() {
   return (
     <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.scrollContainer}>
       <ThemedView style={styles.container}>
-        {/* Header with Logo */}
         <View style={styles.header}>
           <Image source={require('@/assets/images/buizel.jpeg')} style={styles.logo} />
           <ThemedText type="title" style={styles.title}>
@@ -50,7 +49,6 @@ export default function Dashboard() {
           </ThemedText>
         </View>
 
-        {/* Total Value Card */}
         <ThemedView type="backgroundElement" style={styles.totalCard}>
           <ThemedText type="small" style={{ color: colors.textSecondary }}>
             VALOR TOTAL DE MIS CARTAS:
@@ -63,7 +61,6 @@ export default function Dashboard() {
           </ThemedText>
         </ThemedView>
 
-        {/* Chart Placeholder */}
         <ThemedView type="backgroundElement" style={styles.chartContainer}>
           <ThemedText style={styles.chartPlaceholder}>
             GRÁFICA/LÍNEA DE TIEMPO
@@ -72,7 +69,6 @@ export default function Dashboard() {
           </ThemedText>
         </ThemedView>
 
-        {/* Recent Cards */}
         <View>
           <ThemedText type="subtitle" style={styles.sectionTitle}>
             Últimas cartas añadidas
@@ -127,7 +123,7 @@ export default function Dashboard() {
           )}
         </View>
 
-        {/* Action Buttons */}
+
         <View style={styles.actions}>
           <Pressable style={[styles.actionButton, { backgroundColor: colors.accent }]} onPress={navigate(ROUTES.ADD_CARD)}>
             <ThemedText type="link" style={styles.actionButtonText}>

@@ -89,7 +89,6 @@ export default function DetailedCardScreen() {
 	return (
 		<ScrollView style={{ flex: 1 }} contentContainerStyle={styles.scrollContainer}>
 			<ThemedView style={styles.container}>
-				{/* Header with Back */}
 				<View style={styles.header}>
 					<Pressable onPress={() => router.back()}>
 						<MaterialIcons name="arrow-back" size={24} color={colors.text} />
@@ -100,7 +99,6 @@ export default function DetailedCardScreen() {
 					<View style={{ width: 24 }} />
 				</View>
 
-				{/* Card Image */}
 				<View style={styles.imageContainer}>
 					{card.imageUri ? (
 						<Image source={{ uri: card.imageUri }} style={styles.cardImage} />
@@ -109,7 +107,6 @@ export default function DetailedCardScreen() {
 					)}
 				</View>
 
-				{/* Card Info */}
 				<ThemedText type="subtitle" style={styles.cardName}>
 					{card.name}
 				</ThemedText>
@@ -117,7 +114,6 @@ export default function DetailedCardScreen() {
 					{card.expansion}
 				</ThemedText>
 
-				{/* Rarity and Quantity Row */}
 				<View style={styles.infoGrid}>
 					<View style={styles.infoItem}>
 						<ThemedText type="small" style={{ color: colors.textSecondary }}>

@@ -25,14 +25,14 @@ export async function initDb() {
       createdAt INTEGER
     );
   `);
-  // Ensure 'expansion' column exists for older DBs
+
   const cols = await db.getAllAsync<{ name: string }>("PRAGMA table_info('cards');");
   const hasExpansion = cols.some((c) => c.name === 'expansion');
   if (!hasExpansion) {
     try {
       await db.execAsync('ALTER TABLE cards ADD COLUMN expansion TEXT;');
     } catch (e) {
-      // ignore if alter fails for any reason
+
       console.warn('Could not add expansion column:', e);
     }
   }
@@ -63,7 +63,6 @@ export function insertCard(card: Card) {
       card.id,
       card.name,
       card.expansion ?? null,
-      // rarity inserted here
       ((card as any).rarity ?? null),
       card.quantity ?? 1,
       card.imageUri ?? null,

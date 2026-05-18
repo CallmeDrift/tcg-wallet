@@ -122,12 +122,10 @@ export default function PortfolioScreen() {
 								onPress={async () => {
 									console.log('Presionado card:', card.id);
 									try {
-										// Intento usando objeto pathname+params (más robusto con expo-router)
 										await router.push({ pathname: '/options/detailed-card', params: { id: card.id } } as any);
 										console.log('router.push(object) successful for', card.id);
 									} catch (e) {
 										console.error('router.push(object) error:', e);
-										// fallback a querystring
 										try {
 											await router.push(`/options/detailed-card?id=${card.id}` as any);
 											console.log('router.push(fallback) successful for', card.id);

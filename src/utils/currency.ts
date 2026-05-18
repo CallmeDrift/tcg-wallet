@@ -1,5 +1,4 @@
 export function usdToCop(usd: number, rate = 4800) {
-  // Placeholder conversion rate; replace with real FX source when available
   return usd * rate;
 }
 
