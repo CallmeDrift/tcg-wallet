@@ -1,18 +1,6 @@
-import { ThemedView } from '@/components/themed-view';
-import Dashboard from '@/screens/Dashboard';
+import { CollectionDashboard } from '@/features/collection/components/collection-dashboard';
 import React from 'react';
-import { StyleSheet } from 'react-native';
 
 export default function HomeScreen() {
-  return (
-    <ThemedView style={styles.container}>
-      <Dashboard />
-    </ThemedView>
-  );
+  return <CollectionDashboard />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});

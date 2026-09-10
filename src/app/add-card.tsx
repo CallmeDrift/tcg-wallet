@@ -1,3 +1,3 @@
-import AddCardScreen from '@/screens/AddCardScreen';
+import { ManualCardForm } from '@/features/collection/components/manual-card-form';
 
-export default AddCardScreen;
+export default ManualCardForm;

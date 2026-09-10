@@ -1,56 +1,34 @@
-# Welcome to your Expo app 👋
+# TCG Wallet
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicación Expo para administrar una colección Pokémon TCG, sincronizada con Collectr y con soporte para cartas manuales.
 
-## Get started
+## Estructura
 
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+src/
+  app/                         rutas Expo: colección y añadir carta
+  features/collection/
+    api/                       contrato y configuración del servidor
+    components/                grid, modal, dashboard y formulario
+    hooks/                     carga y actualización periódica
+    repository/                SQLite y migración de datos antiguos
+    services/                  caso de uso de sincronización
+    types/ y utils/            modelo y cálculos puros
+server/
+  collectr-proxy.mjs           proxy autenticado hacia Collectr
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Arranque
 
-### Other setup steps
+1. Copia `.env.example` a `.env`.
+2. Configura `COLLECTR_COLLECTION_ID` y `COLLECTR_TOKEN`. El token queda exclusivamente en el servidor.
+3. En otra terminal ejecuta `npm run server`.
+4. Ejecuta `npm start` para abrir la aplicación.
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+En un teléfono físico, configura `EXPO_PUBLIC_COLLECTION_API_URL` con la IP LAN de tu ordenador, por ejemplo `http://192.168.1.20:8787`; `localhost` solo sirve en el mismo dispositivo.
 
-## Learn more
+La colección se actualiza al iniciar, cada 15 minutos mientras la aplicación está activa y de forma manual con el botón de actualizar o pull-to-refresh.
 
-To learn more about developing your project with Expo, look at the following resources:
+## Web
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+SQLite se conserva en web y en móvil. [`metro.config.js`](./metro.config.js) permite cargar el archivo WebAssembly de `expo-sqlite`; los encabezados de aislamiento requeridos también están configurados para despliegues mediante Expo Router/EAS Hosting. Tras cambiar Metro, reinicia Expo limpiando la caché: `npx expo start --clear`.
